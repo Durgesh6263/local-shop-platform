@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Your Shop - ShopConnect</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/forms.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="customer.html" class="nav-link">Find Shops</a>
+                <a href="shop-register.html" class="nav-link active">Register Shop</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Registration Section -->
+    <section class="registration-section">
+        <div class="container">
+            <div class="registration-header">
+                <h1>Register Your Shop</h1>
+                <p>Join our platform and reach more customers in your area</p>
+            </div>
+
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Basic Info</div>
+                </div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Location</div>
+                </div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Services</div>
+                </div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Images</div>
+                </div>
+            </div>
+
+            <!-- Registration Form -->
+            <form class="registration-form" id="shopRegistrationForm">
+                <!-- Step 1: Basic Information -->
+                <div class="form-step active" id="step1">
+                    <div class="form-section">
+                        <h3><i class="fas fa-info-circle"></i> Basic Information</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shopName">Shop Name *</label>
+                                <input type="text" id="shopName" name="shopName" required>
+                                <div class="form-hint">Enter your shop's display name</div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ownerName">Owner Name *</label>
+                                <input type="text" id="ownerName" name="ownerName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number *</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email">
+                            </div>
+                            <div class="form-group">
+                                <label for="whatsappNumber">WhatsApp Number</label>
+                                <input type="tel" id="whatsappNumber" name="whatsappNumber">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shopCategory">Shop Category *</label>
+                                <select id="shopCategory" name="shopCategory" required>
+                                    <option value="">Select Category</option>
+                                    <option value="electronics">Electronics & Mobile</option>
+                                    <option value="kirana">Kirana/Grocery Store</option>
+                                    <option value="repair">Repair Services</option>
+                                    <option value="tailor">Tailor & Clothing</option>
+                                    <option value="medical">Medical & Pharmacy</option>
+                                    <option value="restaurant">Food & Restaurant</option>
+                                    <option value="beauty">Beauty & Salon</option>
+                                    <option value="automotive">Automotive</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Location Information -->
+                <div class="form-step" id="step2">
+                    <div class="form-section">
+                        <h3><i class="fas fa-map-marker-alt"></i> Location Details</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="shopAddress">Complete Shop Address *</label>
+                                <textarea id="shopAddress" name="shopAddress" rows="3" required placeholder="Enter complete address with landmarks"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="pinCode">Pin Code *</label>
+                                <input type="text" id="pinCode" name="pinCode" required maxlength="6">
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City *</label>
+                                <input type="text" id="city" name="city" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="state">State *</label>
+                                <select id="state" name="state" required>
+                                    <option value="">Select State</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="maharashtra">Maharashtra</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="tamil-nadu">Tamil Nadu</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="rajasthan">Rajasthan</option>
+                                    <option value="uttar-pradesh">Uttar Pradesh</option>
+                                    <option value="west-bengal">West Bengal</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="area">Area/Locality</label>
+                                <input type="text" id="area" name="area" placeholder="e.g., Connaught Place">
+                            </div>
+                        </div>
+
+                        <!-- Map Integration Placeholder -->
+                        <div class="map-section">
+                            <label>Shop Location on Map</label>
+                            <div class="map-placeholder" id="mapContainer">
+                                <i class="fas fa-map"></i>
+                                <p>Click to set your shop location on map</p>
+                                <button type="button" class="btn btn-secondary" onclick="openMapSelector()">
+                                    <i class="fas fa-map-marker-alt"></i> Select on Map
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Services & Timings -->
+                <div class="form-step" id="step3">
+                    <div class="form-section">
+                        <h3><i class="fas fa-cogs"></i> Services & Timings</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="servicesOffered">Services Offered *</label>
+                                <textarea id="servicesOffered" name="servicesOffered" rows="4" required placeholder="Describe the services and products you offer"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="shopTimings">Shop Timings *</label>
+                                <input type="text" id="shopTimings" name="shopTimings" required placeholder="e.g., Mon-Sat: 9 AM - 8 PM">
+                            </div>
+                            <div class="form-group">
+                                <label for="closedDays">Closed Days</label>
+                                <input type="text" id="closedDays" name="closedDays" placeholder="e.g., Sunday">
+                            </div>
+                        </div>
+
+                        <!-- Service Options -->
+                        <div class="service-options">
+                            <h4>Additional Services</h4>
+                            <div class="checkbox-grid">
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="homeService" id="homeService">
+                                    <span class="checkmark"></span>
+                                    <div class="checkbox-content">
+                                        <strong>Home Service Available</strong>
+                                        <small>We provide services at customer's location</small>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="onlinePayment" id="onlinePayment">
+                                    <span class="checkmark"></span>
+                                    <div class="checkbox-content">
+                                        <strong>Online Payment Accepted</strong>
+                                        <small>UPI, Cards, Digital Wallets</small>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="deliveryService" id="deliveryService">
+                                    <span class="checkmark"></span>
+                                    <div class="checkbox-content">
+                                        <strong>Delivery Service</strong>
+                                        <small>We deliver products to customers</small>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-item">
+                                    <input type="checkbox" name="emergencyService" id="emergencyService">
+                                    <span class="checkmark"></span>
+                                    <div class="checkbox-content">
+                                        <strong>Emergency Service</strong>
+                                        <small>Available for urgent requirements</small>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Images & Documents -->
+                <div class="form-step" id="step4">
+                    <div class="form-section">
+                        <h3><i class="fas fa-images"></i> Shop Images & Documents</h3>
+                        
+                        <div class="upload-section">
+                            <div class="upload-group">
+                                <label>Shop Images (Max 5 images)</label>
+                                <div class="file-upload-area" onclick="document.getElementById('shopImages').click()">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload shop images</p>
+                                    <small>JPG, PNG files up to 5MB each</small>
+                                </div>
+                                <input type="file" id="shopImages" name="shopImages" multiple accept="image/*" style="display: none;" onchange="handleImageUpload(this)">
+                                <div class="uploaded-images" id="uploadedImages"></div>
+                            </div>
+
+                            <div class="upload-group">
+                                <label>Business License/Registration (Optional)</label>
+                                <div class="file-upload-area" onclick="document.getElementById('businessDoc').click()">
+                                    <i class="fas fa-file-alt"></i>
+                                    <p>Upload business documents</p>
+                                    <small>PDF, JPG, PNG files up to 10MB</small>
+                                </div>
+                                <input type="file" id="businessDoc" name="businessDoc" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" onchange="handleDocUpload(this)">
+                                <div class="uploaded-docs" id="uploadedDocs"></div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="terms-section">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="agreeTerms" id="agreeTerms" required>
+                                <span class="checkmark"></span>
+                                <div class="checkbox-content">
+                                    <strong>I agree to the Terms and Conditions</strong>
+                                    <small>By registering, you agree to our platform policies</small>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Navigation -->
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary" id="prevBtn" onclick="changeStep(-1)" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">
+                        <i class="fas fa-check"></i> Submit Registration
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-modal">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Registration Submitted Successfully!</h3>
+            <p>Your shop registration has been submitted for review. We'll notify you within 24-48 hours.</p>
+            <div class="success-actions">
+                <button onclick="closeSuccessModal()" class="btn btn-primary">Continue</button>
+                <a href="index.html" class="btn btn-secondary">Go to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/shop-register.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

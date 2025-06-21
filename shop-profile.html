@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Profile - ShopConnect</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/shop-profile.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="customer.html" class="nav-link">Find Shops</a>
+                <a href="shop-register.html" class="nav-link">Register Shop</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Shop Profile Section -->
+    <section class="shop-profile-section">
+        <div class="container">
+            <!-- Back Button -->
+            <div class="profile-header">
+                <button onclick="goBack()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back to Results
+                </button>
+            </div>
+
+            <!-- Shop Profile Content -->
+            <div class="shop-profile-container" id="shopProfileContainer">
+                <!-- Shop profile will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Contact Shop</h3>
+                <span class="close" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="contact-options">
+                    <button class="contact-btn call-btn" onclick="makeCall()">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info">
+                            <strong>Call Now</strong>
+                            <small>Direct phone call</small>
+                        </div>
+                    </button>
+                    <button class="contact-btn whatsapp-btn" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        <div class="contact-info">
+                            <strong>WhatsApp</strong>
+                            <small>Send message via WhatsApp</small>
+                        </div>
+                    </button>
+                    <button class="contact-btn message-btn" onclick="sendMessage()">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-info">
+                            <strong>Send Message</strong>
+                            <small>Send inquiry message</small>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Review Modal -->
+    <div id="reviewModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Write a Review</h3>
+                <span class="close" onclick="closeReviewModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="reviewForm">
+                    <div class="rating-input">
+                        <label>Your Rating</label>
+                        <div class="star-rating">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewText">Your Review</label>
+                        <textarea id="reviewText" name="reviewText" rows="4" placeholder="Share your experience with this shop..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="reviewerName">Your Name</label>
+                        <input type="text" id="reviewerName" name="reviewerName" required>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" onclick="closeReviewModal()" class="btn btn-secondary">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Review</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/shop-profile.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

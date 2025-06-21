@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - ShopConnect</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="customer.html" class="nav-link">Find Shops</a>
+                <a href="shop-register.html" class="nav-link">Register Shop</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Booking Section -->
+    <section class="booking-section">
+        <div class="container">
+            <div class="booking-header">
+                <button onclick="goBack()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <h1>Book Service</h1>
+            </div>
+
+            <div class="booking-container">
+                <!-- Shop Info Card -->
+                <div class="shop-info-card" id="shopInfoCard">
+                    <!-- Shop information will be populated by JavaScript -->
+                </div>
+
+                <!-- Booking Form -->
+                <div class="booking-form-container">
+                    <form class="booking-form" id="bookingForm">
+                        <div class="form-section">
+                            <h3><i class="fas fa-cogs"></i> Service Details</h3>
+                            
+                            <div class="form-group">
+                                <label for="serviceType">Service Type *</label>
+                                <select id="serviceType" name="serviceType" required>
+                                    <option value="">Select Service</option>
+                                    <!-- Options will be populated based on shop category -->
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="serviceDescription">Service Description</label>
+                                <textarea id="serviceDescription" name="serviceDescription" rows="3" placeholder="Describe your specific requirements..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="serviceDate">Preferred Date *</label>
+                                    <input type="date" id="serviceDate" name="serviceDate" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="serviceTime">Preferred Time *</label>
+                                    <select id="serviceTime" name="serviceTime" required>
+                                        <option value="">Select Time</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                        <option value="17:00">5:00 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-user"></i> Customer Information</h3>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="customerName">Full Name *</label>
+                                    <input type="text" id="customerName" name="customerName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="customerPhone">Phone Number *</label>
+                                    <input type="tel" id="customerPhone" name="customerPhone" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="customerEmail">Email Address</label>
+                                <input type="email" id="customerEmail" name="customerEmail">
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-map-marker-alt"></i> Service Location</h3>
+                            
+                            <div class="location-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="serviceLocation" value="shop" checked onchange="toggleLocationFields()">
+                                    <span class="radio-mark"></span>
+                                    <div class="radio-content">
+                                        <strong>At Shop</strong>
+                                        <small>Visit the shop for service</small>
+                                    </div>
+                                </label>
+                                
+                                <label class="radio-option">
+                                    <input type="radio" name="serviceLocation" value="home" onchange="toggleLocationFields()">
+                                    <span class="radio-mark"></span>
+                                    <div class="radio-content">
+                                        <strong>Home Service</strong>
+                                        <small>Service at your location</small>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="home-address-section" id="homeAddressSection" style="display: none;">
+                                <div class="form-group">
+                                    <label for="serviceAddress">Service Address *</label>
+                                    <textarea id="serviceAddress" name="serviceAddress" rows="3" placeholder="Enter complete address with landmarks"></textarea>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="servicePincode">Pin Code</label>
+                                        <input type="text" id="servicePincode" name="servicePincode" maxlength="6">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="serviceCity">City</label>
+                                        <input type="text" id="serviceCity" name="serviceCity">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-credit-card"></i> Payment Information</h3>
+                            
+                            <div class="payment-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="paymentMethod" value="cash" checked>
+                                    <span class="radio-mark"></span>
+                                    <div class="radio-content">
+                                        <strong>Cash Payment</strong>
+                                        <small>Pay after service completion</small>
+                                    </div>
+                                </label>
+                                
+                                <label class="radio-option">
+                                    <input type="radio" name="paymentMethod" value="online">
+                                    <span class="radio-mark"></span>
+                                    <div class="radio-content">
+                                        <strong>Online Payment</strong>
+                                        <small>Pay now via UPI/Card</small>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="estimated-cost">
+                                <div class="cost-item">
+                                    <span>Estimated Service Cost:</span>
+                                    <span id="estimatedCost">₹ --</span>
+                                </div>
+                                <div class="cost-note">
+                                    <small><i class="fas fa-info-circle"></i> Final cost may vary based on actual service requirements</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-section">
+                            <h3><i class="fas fa-comment"></i> Additional Notes</h3>
+                            
+                            <div class="form-group">
+                                <label for="additionalNotes">Special Instructions</label>
+                                <textarea id="additionalNotes" name="additionalNotes" rows="3" placeholder="Any special instructions or requirements..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Booking Summary -->
+                        <div class="booking-summary">
+                            <h4>Booking Summary</h4>
+                            <div class="summary-item">
+                                <span>Service:</span>
+                                <span id="summaryService">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Date & Time:</span>
+                                <span id="summaryDateTime">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Location:</span>
+                                <span id="summaryLocation">--</span>
+                            </div>
+                            <div class="summary-item">
+                                <span>Payment:</span>
+                                <span id="summaryPayment">--</span>
+                            </div>
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" onclick="goBack()" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancel
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check"></i> Confirm Booking
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content confirmation-modal">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Booking Confirmed!</h3>
+            <p>Your service booking has been confirmed. The shop owner will contact you shortly.</p>
+            <div class="booking-details" id="confirmedBookingDetails">
+                <!-- Booking details will be populated here -->
+            </div>
+            <div class="confirmation-actions">
+                <button onclick="closeConfirmationModal()" class="btn btn-primary">Continue</button>
+                <a href="customer.html" class="btn btn-secondary">Find More Shops</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/booking.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

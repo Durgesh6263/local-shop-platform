@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Local Shops - ShopConnect</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/customer.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="customer.html" class="nav-link active">Find Shops</a>
+                <a href="shop-register.html" class="nav-link">Register Shop</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-header">
+                <h1>Find Local Shops & Services</h1>
+                <p>Discover nearby businesses in your area</p>
+            </div>
+
+            <!-- Location & Search Panel -->
+            <div class="search-panel">
+                <div class="location-section">
+                    <div class="location-input-group">
+                        <div class="location-input">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <input type="text" id="locationInput" placeholder="Enter your location or pin code">
+                            <button onclick="getCurrentLocation()" class="location-btn" title="Use current location">
+                                <i class="fas fa-crosshairs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filters-section">
+                    <div class="filter-group">
+                        <label for="categoryFilter">Category</label>
+                        <select id="categoryFilter" onchange="filterShops()">
+                            <option value="">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="kirana">Kirana/Grocery</option>
+                            <option value="repair">Repair Services</option>
+                            <option value="tailor">Tailor</option>
+                            <option value="mobile">Mobile Shop</option>
+                            <option value="medical">Medical</option>
+                            <option value="restaurant">Restaurant</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="rangeFilter">Distance</label>
+                        <select id="rangeFilter" onchange="filterShops()">
+                            <option value="1">Within 1 km</option>
+                            <option value="2">Within 2 km</option>
+                            <option value="5" selected>Within 5 km</option>
+                            <option value="10">Within 10 km</option>
+                            <option value="20">Within 20 km</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="sortFilter">Sort By</label>
+                        <select id="sortFilter" onchange="filterShops()">
+                            <option value="distance">Distance</option>
+                            <option value="rating">Rating</option>
+                            <option value="reviews">Most Reviewed</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+                    
+                    <button onclick="searchShops()" class="btn btn-primary search-btn">
+                        <i class="fas fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Filters -->
+            <div class="quick-filters">
+                <button class="filter-chip active" onclick="setQuickFilter('all')">All</button>
+                <button class="filter-chip" onclick="setQuickFilter('open')">Open Now</button>
+                <button class="filter-chip" onclick="setQuickFilter('home-service')">Home Service</button>
+                <button class="filter-chip" onclick="setQuickFilter('top-rated')">Top Rated</button>
+                <button class="filter-chip" onclick="setQuickFilter('offers')">Special Offers</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section">
+        <div class="container">
+            <div class="results-header">
+                <div class="results-info">
+                    <span id="resultsCount">Loading...</span>
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="setView('grid')" title="Grid View">
+                            <i class="fas fa-th"></i>
+                        </button>
+                        <button class="view-btn" onclick="setView('list')" title="List View">
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Finding shops near you...</p>
+            </div>
+
+            <!-- Shop Results -->
+            <div class="shops-container" id="shopsContainer">
+                <div class="shops-grid" id="shopsGrid">
+                    <!-- Shop cards will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <i class="fas fa-search"></i>
+                    <h3>No shops found</h3>
+                    <p>Try expanding your search radius or changing the category</p>
+                    <button onclick="expandSearch()" class="btn btn-primary">Expand Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Detail Modal -->
+    <div id="shopModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Shop Details</h3>
+                <span class="close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="shopDetails">
+                <!-- Shop details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Contact Shop</h3>
+                <span class="close" onclick="closeContactModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="contact-options">
+                    <button class="contact-btn call-btn" onclick="makeCall()">
+                        <i class="fas fa-phone"></i>
+                        <span>Call Now</span>
+                    </button>
+                    <button class="contact-btn whatsapp-btn" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>WhatsApp</span>
+                    </button>
+                    <button class="contact-btn message-btn" onclick="sendMessage()">
+                        <i class="fas fa-envelope"></i>
+                        <span>Send Message</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/customer.js"></script>
+    <script src="js/location.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

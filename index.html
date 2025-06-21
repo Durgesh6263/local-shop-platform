@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopConnect - Find Local Shops & Services</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="customer.html" class="nav-link">Find Shops</a>
+                <a href="shop-register.html" class="nav-link">Register Shop</a>
+                <a href="admin.html" class="nav-link">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Connect with Local Shops & Services</h1>
+                <p>Discover nearby shops, book services, and support your local community with ease</p>
+                <div class="hero-buttons">
+                    <a href="customer.html" class="btn btn-primary">
+                        <i class="fas fa-search"></i> Find Shops
+                    </a>
+                    <a href="shop-register.html" class="btn btn-secondary">
+                        <i class="fas fa-plus"></i> Register Your Shop
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-graphic">
+                    <i class="fas fa-store-alt"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose ShopConnect?</h2>
+                <p>Everything you need to connect with local businesses</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <h3>Location-Based Search</h3>
+                    <p>Find shops and services within your preferred radius using advanced location filtering</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <h3>Easy Service Booking</h3>
+                    <p>Book services, repairs, and home visits with just a few taps on your mobile device</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Reviews & Ratings</h3>
+                    <p>Read genuine reviews and ratings from verified customers in your area</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3>Direct Communication</h3>
+                    <p>Chat, call, or WhatsApp directly with shop owners for instant communication</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Pay securely with integrated UPI, Paytm, and Razorpay payment options</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Real-time Notifications</h3>
+                    <p>Get instant updates on bookings, offers, and service status via SMS and email</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Popular Categories</h2>
+                <p>Explore services in your area</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="searchByCategory('electronics')">
+                    <i class="fas fa-tv"></i>
+                    <h4>Electronics</h4>
+                    <p>Mobile, TV, Laptop Repair</p>
+                </div>
+                <div class="category-card" onclick="searchByCategory('kirana')">
+                    <i class="fas fa-shopping-basket"></i>
+                    <h4>Kirana Store</h4>
+                    <p>Groceries & Daily Needs</p>
+                </div>
+                <div class="category-card" onclick="searchByCategory('repair')">
+                    <i class="fas fa-tools"></i>
+                    <h4>Repair Services</h4>
+                    <p>Home Appliance Repair</p>
+                </div>
+                <div class="category-card" onclick="searchByCategory('tailor')">
+                    <i class="fas fa-cut"></i>
+                    <h4>Tailor</h4>
+                    <p>Clothing & Alterations</p>
+                </div>
+                <div class="category-card" onclick="searchByCategory('medical')">
+                    <i class="fas fa-pills"></i>
+                    <h4>Medical</h4>
+                    <p>Pharmacy & Healthcare</p>
+                </div>
+                <div class="category-card" onclick="searchByCategory('restaurant')">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Food & Restaurant</h4>
+                    <p>Dining & Takeaway</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalShops">500+</div>
+                    <div class="stat-label">Registered Shops</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalUsers">2000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalBookings">1500+</div>
+                    <div class="stat-label">Services Booked</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalCities">25+</div>
+                    <div class="stat-label">Cities Covered</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Started?</h2>
+                <p>Join thousands of customers and shop owners who trust ShopConnect</p>
+                <div class="cta-buttons">
+                    <a href="customer.html" class="btn btn-primary">Find Shops Near You</a>
+                    <a href="shop-register.html" class="btn btn-outline">Register Your Business</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-store"></i>
+                        <span>ShopConnect</span>
+                    </div>
+                    <p>Connecting local businesses with customers in your neighborhood.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="customer.html">Find Shops</a></li>
+                        <li><a href="shop-register.html">Register Shop</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="#">Electronics</a></li>
+                        <li><a href="#">Kirana Store</a></li>
+                        <li><a href="#">Repair Services</a></li>
+                        <li><a href="#">Medical</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#help">Help Center</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                        <li><a href="#terms">Terms of Service</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

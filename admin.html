@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ShopConnect</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-store"></i>
+                <span>ShopConnect</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="customer.html" class="nav-link">Find Shops</a>
+                <a href="shop-register.html" class="nav-link">Register Shop</a>
+                <a href="admin.html" class="nav-link active">Admin</a>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h1>Admin Dashboard</h1>
+                <p>Manage shops, users, and platform analytics</p>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalShops">0</div>
+                        <div class="stat-label">Total Shops</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="pendingApprovals">0</div>
+                        <div class="stat-label">Pending Approvals</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalUsers">0</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-calendar-check"></i>
+                    </div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalBookings">0</div>
+                        <div class="stat-label">Total Bookings</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Admin Tabs -->
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="showTab('pending')">
+                    <i class="fas fa-clock"></i> Pending Approvals
+                </button>
+                <button class="tab-btn" onclick="showTab('shops')">
+                    <i class="fas fa-store"></i> All Shops
+                </button>
+                <button class="tab-btn" onclick="showTab('users')">
+                    <i class="fas fa-users"></i> Users
+                </button>
+                <button class="tab-btn" onclick="showTab('bookings')">
+                    <i class="fas fa-calendar"></i> Bookings
+                </button>
+                <button class="tab-btn" onclick="showTab('analytics')">
+                    <i class="fas fa-chart-bar"></i> Analytics
+                </button>
+            </div>
+
+            <!-- Tab Contents -->
+            
+            <!-- Pending Approvals Tab -->
+            <div class="tab-content active" id="pendingTab">
+                <div class="tab-header">
+                    <h3>Pending Shop Approvals</h3>
+                    <div class="tab-actions">
+                        <button onclick="refreshPendingShops()" class="btn btn-secondary">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="pending-shops-container" id="pendingShopsContainer">
+                    <!-- Pending shops will be populated here -->
+                </div>
+            </div>
+
+            <!-- All Shops Tab -->
+            <div class="tab-content" id="shopsTab">
+                <div class="tab-header">
+                    <h3>All Registered Shops</h3>
+                    <div class="tab-actions">
+                        <div class="search-filter">
+                            <input type="text" id="shopSearchInput" placeholder="Search shops..." onkeyup="filterShops()">
+                            <select id="shopCategoryFilter" onchange="filterShops()">
+                                <option value="">All Categories</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="kirana">Kirana</option>
+                                <option value="repair">Repair</option>
+                                <option value="tailor">Tailor</option>
+                                <option value="medical">Medical</option>
+                                <option value="restaurant">Restaurant</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="shops-container" id="allShopsContainer">
+                    <!-- All shops will be populated here -->
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div class="tab-content" id="usersTab">
+                <div class="tab-header">
+                    <h3>Platform Users</h3>
+                    <div class="tab-actions">
+                        <button onclick="exportUsers()" class="btn btn-secondary">
+                            <i class="fas fa-download"></i> Export
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="users-container" id="usersContainer">
+                    <!-- Users will be populated here -->
+                </div>
+            </div>
+
+            <!-- Bookings Tab -->
+            <div class="tab-content" id="bookingsTab">
+                <div class="tab-header">
+                    <h3>Service Bookings</h3>
+                    <div class="tab-actions">
+                        <select id="bookingStatusFilter" onchange="filterBookings()">
+                            <option value="">All Status</option>
+                            <option value="pending">Pending</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="bookings-container" id="bookingsContainer">
+                    <!-- Bookings will be populated here -->
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-content" id="analyticsTab">
+                <div class="tab-header">
+                    <h3>Platform Analytics</h3>
+                    <div class="tab-actions">
+                        <select id="analyticsTimeframe" onchange="updateAnalytics()">
+                            <option value="week">Last Week</option>
+                            <option value="month">Last Month</option>
+                            <option value="quarter">Last Quarter</option>
+                            <option value="year">Last Year</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="analytics-container">
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <h4>Shop Registrations</h4>
+                            <div class="chart-placeholder" id="shopRegistrationsChart">
+                                <i class="fas fa-chart-line"></i>
+                                <p>Shop registration trends</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h4>User Activity</h4>
+                            <div class="chart-placeholder" id="userActivityChart">
+                                <i class="fas fa-chart-bar"></i>
+                                <p>User engagement metrics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h4>Popular Categories</h4>
+                            <div class="chart-placeholder" id="categoriesChart">
+                                <i class="fas fa-chart-pie"></i>
+                                <p>Most popular shop categories</p>
+                            </div>
+                        </div>
+                        
+                        <div class="analytics-card">
+                            <h4>Area-wise Traffic</h4>
+                            <div class="chart-placeholder" id="areaTrafficChart">
+                                <i class="fas fa-map"></i>
+                                <p>Traffic by geographical area</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detailed-analytics">
+                        <div class="analytics-table">
+                            <h4>Top Performing Shops</h4>
+                            <table id="topShopsTable">
+                                <thead>
+                                    <tr>
+                                        <th>Shop Name</th>
+                                        <th>Category</th>
+                                        <th>Bookings</th>
+                                        <th>Rating</th>
+                                        <th>Revenue</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Detail Modal -->
+    <div id="shopDetailModal" class="modal">
+        <div class="modal-content large-modal">
+            <div class="modal-header">
+                <h3>Shop Details</h3>
+                <span class="close" onclick="closeShopDetailModal()">&times;</span>
+            </div>
+            <div class="modal-body" id="shopDetailContent">
+                <!-- Shop details will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Confirm Action</h3>
+                <span class="close" onclick="closeConfirmationModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="confirmationMessage">Are you sure you want to perform this action?</p>
+                <div class="modal-actions">
+                    <button onclick="closeConfirmationModal()" class="btn btn-secondary">Cancel</button>
+                    <button onclick="confirmAction()" class="btn btn-primary" id="confirmBtn">Confirm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>
